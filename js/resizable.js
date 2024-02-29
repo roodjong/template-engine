@@ -1,5 +1,8 @@
 class DraggableResizableObject {
-    constructor(canvas, img, initialX, initialY, initialWidth, initialHeight) {
+    constructor(canvas, imageScalerID, img, initialX, initialY, initialWidth, initialHeight) {
+            
+        let slider = document.getElementById(imageScalerID);
+        slider.addEventListener('input', drawTemplate)
         
         // Event listeners
         canvas.addEventListener('mousedown', (event) => {
@@ -21,13 +24,12 @@ class DraggableResizableObject {
         this.isDragging = false;
         this.dragStart = { x: 0, y: 0 };
         this.img = img;
-        this.onChange = x => {}
-        this.getScale = () => 1.0;
-        this.canvas = null;
+        this.sliderInput = slider;
+        this.canvas = canvas;
     }
 
     draw(context) {
-        context.drawImage(this.img, this.position.x, this.position.y, this.size.width * this.getScale(), this.size.height * this.getScale());
+        context.drawImage(this.img, this.position.x, this.position.y, this.size.width * this.sliderInput.value, this.size.height * this.sliderInput.value);
     }
 
     startDrag(event) {
@@ -49,13 +51,12 @@ class DraggableResizableObject {
             this.position.x += deltaX * xScale;
             this.position.y += deltaY * yScale;
             this.dragStart = { x: event.clientX, y: event.clientY };
-            this.onChange();
-            console.log("drag");
+            drawTemplate();
         }
     }
 
     setScale(factor) {
         this.scaleFactor = factor;
-        this.onChange();
+        drawTemplate();
     }
 }
