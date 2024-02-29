@@ -1,5 +1,9 @@
 class TextDrawable {
-    constructor(text, font, linespacing, color, context, initialX, initialY, initialWidth, initialHeight) {
+    constructor(inputID, font, linespacing, color, context, initialX, initialY, initialWidth, initialHeight) {
+        const input = document.getElementById(inputID);
+        input.addEventListener("input", () => this.setText(input.value));
+        input.addEventListener("input", drawTemplate);
+        
         this.font = font;
         this.linespacing = linespacing;
         this.color = color;
@@ -7,7 +11,7 @@ class TextDrawable {
         this.size = { width: initialWidth, height: initialHeight };
         this.context = context;
         this.getLineSpacing = () => 0.5
-        this.setText(text)
+        this.setText(input.value)
     }
 
     calculateFontSize() {

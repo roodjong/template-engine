@@ -4,7 +4,7 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext('2d');
 
 let backgroundImage = new DraggableResizableObject(document.createElement('img'), 0, 0, 0, 0);
-let topText = new TextDrawable("Some test\ntext", "10px Bebas Neue", 0.2, "white", context, 0, 0, 2000, 500);
+let topText = new TextDrawable("titelText", "10px Bebas Neue", 0.2, "white", context, 0, 0, 2000, 500);
 
 let layers = [backgroundImage, "frame.png", topText];
 
@@ -38,11 +38,6 @@ function onStartup(){
     slider = document.getElementById("imageSize");
     backgroundImage.getScale = () => slider.value;
     slider.addEventListener('input', drawTemplate)
-
-    const titelInput = document.getElementById("titelText");
-    titelInput.addEventListener("input", x => topText.setText(titelInput.value));
-    topText.setText(titelInput.value);
-    titelInput.addEventListener("input", drawTemplate);
 
     drawTemplate();
 }

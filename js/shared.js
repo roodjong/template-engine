@@ -2,7 +2,6 @@ function fixLayerIndirection() {
     layers = layers.map(layer => {
         if (typeof layer === 'string') {
             const img = new Image();
-            // img.crossOrigin = ""; 
             img.src = layer;
             let width = img.width;
             let height = img.height;
