@@ -45,17 +45,17 @@ main{
 
 @font-face {
     font-family: 'BebasNeueThin';
-    src: url('bebasneue-thin.otf');
+    src: url('Bebas\ Neue\ Pro\ Thin.ttf');
 }
 
 @font-face {
     font-family: 'BebasNeueBook';
-    src: url('bebasneue-book.otf');
+    src: url('Bebas\ Neue\ Pro\ Book.ttf');
 }
 @font-face {
     font-family: 'BebasNeueSEEB';
-    src: url('bebasneue-semiexpenadedextrabold.otf');
+    src: url('Bebas\ Neue\ Pro\ SemiExpanded\ ExtraBold.ttf');
 }@font-face {
     font-family: 'BebasNeueSEM';
-    src: url('Fontspring-DEMO-bebasneuepro-smemd.otf');
+    src: url('Bebas\ Neue\ Pro\ SemiExpanded\ Middle.ttf');
 }
