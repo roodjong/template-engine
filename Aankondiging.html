@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Image Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <p>Sleep het plaatje om te verplaatsen</p>
+    <label name="imageInput">Upload plaatje</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <div>
+      <label name="imageSize">Grootte achtergrond:</label>
+      <input type="range" id="imageSize" min="0" max="10" step="0.01" value="1">
+    </div>
+    <textarea id="titelText">Jouw titel&#13;hier</textarea>
+    <button onclick="generateImage()">Generate Image</button>
+    <button id="downloadButton" onclick="download('Aankondiging')">Download</button>
+  </div>
+  </main>
+
+  <img src="templateImages/Aankondiging/frame.png" id="frame" hidden>
+
+  <script src="js/shared.js"></script>
+  <script src="js/text.js"></script>
+  <script src="js/resizable.js"></script>
+  <script src="js/aankondiging.js"></script>
+  
+</body>
+</html>

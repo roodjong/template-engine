@@ -1,0 +1,32 @@
+#imageSize{
+    width: 100%;
+}
+
+#canvas{
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+main{
+    display: flex;
+    /* flex-direction: column;*/
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    #controls{
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Change to column layout for mobile */
+    }
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wdhyzbi.woff2');
+}
