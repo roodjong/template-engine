@@ -3,7 +3,7 @@ const textInput = document.getElementById("textInput");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext('2d');
 
-let backgroundImage = new DraggableResizableObject(document.createElement('img'), 0, 0, 0, 0);
+let backgroundImage = new DraggableResizableObject(canvas, document.createElement('img'), 0, 0, 0, 0);
 let topText = new TextDrawable("titelText", "10px Bebas Neue", 0.2, "white", context, 0, 0, 2000, 500);
 
 let layers = [backgroundImage, "frame.png", topText];
@@ -16,20 +16,7 @@ document.addEventListener('DOMContentLoaded', onStartup);
 function onStartup(){
     fixLayerIndirection();
 
-    // Event listeners
-    canvas.addEventListener('mousedown', (event) => {
-        backgroundImage.startDrag(event);
-    });
-
-    document.addEventListener('mousemove', (event) => {
-        if (backgroundImage.isDragging) {
-            backgroundImage.drag(event);
-        }
-    });
-
-    document.addEventListener('mouseup', () => {
-        backgroundImage.stopDrag();
-    });
+    
 
     backgroundImage.onChange = drawTemplate
     backgroundImage.canvas = canvas;

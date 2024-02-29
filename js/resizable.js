@@ -1,5 +1,21 @@
 class DraggableResizableObject {
-    constructor(img, initialX, initialY, initialWidth, initialHeight) {
+    constructor(canvas, img, initialX, initialY, initialWidth, initialHeight) {
+        
+        // Event listeners
+        canvas.addEventListener('mousedown', (event) => {
+            this.startDrag(event);
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (this.isDragging) {
+                this.drag(event);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            this.stopDrag();
+        });
+        
         this.position = { x: initialX, y: initialY };
         this.size = { width: initialWidth, height: initialHeight };
         this.isDragging = false;
