@@ -46,8 +46,10 @@ function download(template_name) {
     link.click();
 }
 
-
-document.getElementById('imageInput').addEventListener('change', handleImageUpload);
+let imgInput = document.getElementById('imageInput');
+if(imgInput != null){
+    imgInput.addEventListener('change', handleImageUpload);
+}
 function handleImageUpload(event) {
     const file = event.target.files[0];
   
