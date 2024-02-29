@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Image Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <p>Laad het niet in? Vreemd lettertype? Herlaad de pagina/upload de file opnieuw, het werkt 90% of the time all the time.</p>
+    <label name="imageInput">Upload plaatje</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <div>
+      <label name="imageSize">Grootte achtergrond:</label>
+      <input type="range" id="imageSize" min="0" max="10" step="0.01" value="1">
+    </div>
+    <div class="labelInputPair">
+      <label name="titelText">Titel:</label>
+    <textarea id="titelText">Jouw titel&#13;hier</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="groepsnaam">Groepsnaam:</label>
+    <input type="text" id="groepsnaam" value="socialistische jongeren"></textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="oproepTekst">Tekst:</label>
+    <textarea id="oproepTekst" class="bigtext">Dit template kan worden gebruikt voor tekst. Het kan leuk zijn
+sommige woorden of zinnen *dik te maken* of om ze ^rood^ te maken of ~allebij~.
+Het is verder een redelijk saai template, dus probeer de tekstposts altijd
+te beginnen met een aankondiging/artikel plaatje!
+
+Houdt tekst kort op deze plaatjes. Het kan beter zijn een 
+artikel-afbeelding te maken die in het bijschrift verwijst
+naar een artikelop de website, dan het artikel hier uit te typen.
+
+~Proletariërs aller landen verenig u!~
+    </textarea>
+    </div>
+    <br>
+    <button id="downloadButton" onclick="download('Aankondiging')">Download</button>
+  </div>
+  </main>
+
+  <script src="js/shared.js"></script>
+  <script src="js/text.js"></script>
+  <script src="js/resizable.js"></script>
+  <script src="js/imgWrapper.js"></script>
+  <script src="js/tekstbericht.js"></script>
+  
+</body>
+</html>

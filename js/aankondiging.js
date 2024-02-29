@@ -1,6 +1,17 @@
 let backgroundImage = new DraggableResizableObject(canvas, "imageSize", document.createElement('img'), 0, 0, 0, 0);
-let topText = new TextDrawable("titelText", "10px Bebas Neue", 0.2, "white", context, 0, 0, 2000, 500);
-let groepsnaam = new TextDrawable("groepsnaam", "10px BebasNeueBook", 0, "blue", context, 243, 1840, 560, 52, false, 72.5, false);
+let topText = new TextDrawable({font: "Bebas Neue", linespacing: 0.2, color: "white", allCaps: true, context:context,
+    xPosition: 0, yPosition: 100, maxWidth:2000, maxHeight:400, inputID:"titelText"});
+let groepsnaam = new TextDrawable({font: "BebasNeueBook", linespacing: 0, color: "white", allCaps : true, context:context,
+    xPosition: 243, yPosition: 1840, doDynamicSize: false, fontSize: 72.5, doCenter: false, inputID: "groepsnaam",});
+let ondertitel = new TextDrawable({font: "BebasNeueBook", linespacing: 0, color: "white", allCaps : true, context:context,
+    xPosition: 0, yPosition: 600, maxWidth: 2000, doDynamicSize: false, fontSize: 72.5, inputID: "onderTitel"});
 
 //Define layers here
-let layers = [backgroundImage, "templateImages/Aankondiging/frame.png", topText, groepsnaam];
+let layers = [
+    backgroundImage, 
+    new ImgWrapper("templateImages/Aankondiging/rechtsMultiply.png", "multiply"), 
+    "templateImages/Aankondiging/frame.png", 
+    topText, 
+    groepsnaam,
+    ondertitel
+];

@@ -14,6 +14,16 @@ main{
     align-items: center;
     justify-content: center;
 }
+
+.labelInputPair{
+    display: flex;
+    flex-direction: column;
+}
+
+.bigtext{
+    height: 200px;
+}
+
 @media (min-width: 768px) {
     #controls{
         margin-left: 10vw;
@@ -25,6 +35,8 @@ main{
         flex-direction: column; /* Change to column layout for mobile */
     }
 }
+
+
 
 @font-face {
     font-family: 'BebasNeue';
@@ -39,4 +51,11 @@ main{
 @font-face {
     font-family: 'BebasNeueBook';
     src: url('bebasneue-book.otf');
+}
+@font-face {
+    font-family: 'BebasNeueSEEB';
+    src: url('bebasneue-semiexpenadedextrabold.otf');
+}@font-face {
+    font-family: 'BebasNeueSEM';
+    src: url('Fontspring-DEMO-bebasneuepro-smemd.otf');
 }

@@ -4,19 +4,21 @@ const context = canvas.getContext('2d');
 function fixLayerIndirection() {
     layers = layers.map(layer => {
         if (typeof layer === 'string') {
-            const img = new Image();
-            img.src = layer;
-            let width = img.width;
-            let height = img.height;
+            return new ImgWrapper(layer);
+        }
+        return layer;
+    });
+    layers.forEach(layer => {
+        if(layer instanceof ImgWrapper){
+            let width = layer.img.width;
+            let height = layer.img.height;
             if (canvas.width < width){
                 canvas.width = width;
             }
             if (canvas.height < height){
                 canvas.height = height;
             }
-            return img;
         }
-        return layer;
     });
 }
 
@@ -71,6 +73,5 @@ document.addEventListener('DOMContentLoaded', onStartup);
 
 function onStartup(){
     fixLayerIndirection();
-
     drawTemplate();
 }
