@@ -114,6 +114,7 @@ canvas.addEventListener('mousedown', (event) => {
     handleDragStart(event.clientX, event.clientY);
 });
 canvas.addEventListener('touchstart', (event) => {
+    console.log("Drag with touch!");
     //assume single touches
     touch = event.changedTouches[0];
     handleDragStart(touch.clientX, touch.clientY);

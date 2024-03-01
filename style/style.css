@@ -6,6 +6,7 @@
     max-width: 80vw;
     max-height: 80vh;
     object-fit: contain;
+    touch-action: none;
 }
 
 main{
@@ -28,11 +29,19 @@ main{
     #controls{
         margin-left: 10vw;
     }
+
+    #imageInput{
+        max-width: 15vw;
+    }
 }
 
 @media (max-width: 768px) {
     main {
         flex-direction: column; /* Change to column layout for mobile */
+    }
+
+    #imageInput{
+        max-width: 40vw;
     }
 }
 
