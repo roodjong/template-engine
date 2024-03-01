@@ -1,4 +1,4 @@
-class TextDrawable {
+class TextDrawable extends abstractLayer {
     /**
      * 
      * @param {string} font Font to use
@@ -16,6 +16,7 @@ class TextDrawable {
      */
     constructor({font, linespacing, color, xPosition, yPosition, maxWidth = 0, maxHeight = 0, context,
             doDynamicSize = true, fontSize = 10, doCenter=true, inputID = null, text = null, allCaps = false}) {
+        super();
                 
         this.context = context;
         this.font = fontSize + "px " + font;
@@ -48,6 +49,41 @@ class TextDrawable {
         }
     }
 
+    getPosition(){
+        return this.position;
+    }
+    getVisibleDimentions(){
+        this.context.font = this.font;
+        const lineHeight = this.getMaximumHeight();
+        //count empty strings at start and end, which arent visible and thus not clickable
+        let areEmpty = this.lines.map(x => x.trim().length == 0);
+        let emptyStart = 0;
+        let emptyEnd = 0;
+        while(areEmpty[emptyStart]){
+            emptyStart++;
+        }
+        while(areEmpty[this.lines.length-emptyEnd-1]){
+            emptyEnd++;
+        }
+        let positionYRemove = (1 + this.lineSpacing) * lineHeight * emptyStart;
+        let actualShownLines = this.lines.length - emptyEnd - emptyStart;
+
+        let maxLineLength = Math.max(...this.lines.map(
+            line => this.context.measureText(line).width));
+        
+        let trueYPos = this.position.y - positionYRemove;
+        let trueHeight = actualShownLines * lineHeight + (actualShownLines - 1) * this.lineSpacing;
+        let trueXPos = this.position.x;
+        if(this.doCenter){
+            trueXPos += (this.size.width - maxLineLength)/2;
+        }
+        let trueWidth = maxLineLength;
+        return {x: trueXPos, y: trueYPos, width: trueWidth, height: trueHeight};
+    }
+    setPositionInternal(x, y){
+        this.position = {x: x, y: y};
+    }
+
     getMaximumHeight(){
         let x = this.lines.map(line => {
             let measurements = this.context.measureText(line);
@@ -70,7 +106,6 @@ class TextDrawable {
             let isSmaller = this.lines.every(x => {
                 const textMetrics = this.context.measureText(x);
                 let realHeight = (numOfLines * maxHeight + (numOfLines - 1) * this.linespacing);
-                console.log(realHeight);
                 return textMetrics.width < this.size.width && 
                     realHeight < this.size.height;
             })

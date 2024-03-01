@@ -69,11 +69,70 @@ function handleImageUpload(event) {
     }
   }
 
-  
+function getCanvasCoordinates(canvas, clientX, clientY) {
+    let rect = canvas.getBoundingClientRect();
+    let x = clientX - rect.left;
+    let y = clientY - rect.top;
+    
+    let xScale = this.canvas.width/this.canvas.offsetWidth;
+    let yScale = this.canvas.height/this.canvas.offsetHeight;
 
-document.addEventListener('DOMContentLoaded', onStartup);
+    return {x: x*xScale, y: y*yScale}
+}
+
+function handleDragStart(clientX, clientY){
+    const canvasCoords = getCanvasCoordinates(canvas, clientX, clientY);
+    //Loop reversed, from top shown layer first when finding drag. Bubble down.
+    for (let index = layers.length - 1; index >= 0; index--) {
+        const layer = layers[index];
+        let acceptedDrag = layer.startDrag(canvasCoords.x, canvasCoords.y);
+        if(acceptedDrag){
+            //Do not drag multiple items
+            return;
+        }
+    }
+}
+
+
+function handleDragMove(clientX, clientY){
+    const canvasCoords = getCanvasCoordinates(canvas, clientX, clientY);
+    layers.forEach(x => x.drag(canvasCoords.x, canvasCoords.y));
+    drawTemplate();
+}
+
+function handleDragEnd(){
+    layers.forEach(x => x.stopDrag())
+}
 
 function onStartup(){
     fixLayerIndirection();
     drawTemplate();
 }
+
+// Event listeners
+canvas.addEventListener('mousedown', (event) => {
+    handleDragStart(event.clientX, event.clientY);
+});
+canvas.addEventListener('touchstart', (event) => {
+    //assume single touches
+    touch = event.changedTouches[0];
+    handleDragStart(touch.clientX, touch.clientY);
+});
+
+document.addEventListener('mousemove', (event) => {
+    handleDragMove(event.clientX, event.clientY);
+});
+document.addEventListener('touchmove', (event) => {
+    //assume single touches
+    touch = event.changedTouches[0];
+    handleDragMove(touch.clientX, touch.clientY);
+});
+
+document.addEventListener('mouseup', () => {
+    handleDragEnd();
+});
+document.addEventListener('touchend', () => {
+    handleDragEnd();
+});
+
+document.addEventListener('DOMContentLoaded', onStartup);

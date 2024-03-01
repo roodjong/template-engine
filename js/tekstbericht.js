@@ -4,6 +4,8 @@ let groepsnaam = new TextDrawable({font: "BebasNeueBook", linespacing: 0, color:
     xPosition: 243, yPosition: 1843, doDynamicSize: false, fontSize: 70.5, doCenter: false, inputID: "groepsnaam"});
 let oproepTekst = new TextDrawable({font: "BebasNeueSEEB", linespacing: 0.5, color: "black", context: context,
 xPosition: 50, yPosition: 600, maxWidth: 1890, doDynamicSize: false, fontSize: 75, inputID: "oproepTekst"})
+oproepTekst.lockXPosition();
+oproepTekst.makeDraggable();
 document.addEventListener("DOMContentLoaded", ()=>oproepTekst.centerSelfHorizontal(canvas))
 
 
