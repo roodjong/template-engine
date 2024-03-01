@@ -7,12 +7,24 @@ class abstractLayer{
     dragStart = {x: 0, y: 0}
 
     //override these three in child classes to enable shared functionality to work properly.
+    /**
+     * Returns {x, y} of the actual internal position.
+     */
     getPosition(){
         throw Error("Not implemented");
     }
+    /**
+     * Returns {x, y, width, height} of the actually visible to the user area of the layer.
+     */
     getVisibleDimentions(){
         throw Error("Not implemented");
     }
+    /**
+     * Should be overridden to handle the numbers. Locking is already filtered out in the abstract superclass.
+     * Sets the actual internal position.
+     * @param {number} x 
+     * @param {number} y 
+     */
     setPositionInternal(x, y){
         throw Error("Not implemented");
     }
@@ -31,10 +43,16 @@ class abstractLayer{
         this.isDraggable = true;
     }
 
+    /**
+     * Locks the y position of the element.
+     */
     lockYPosition(){
         this.yIsLocked = true;
     }
 
+    /**
+     * Locks the x position of the element.
+     */
     lockXPosition(){
         this.xIsLocked = true;
     }
