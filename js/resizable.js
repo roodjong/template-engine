@@ -8,14 +8,25 @@ class DraggableResizableObject {
         canvas.addEventListener('mousedown', (event) => {
             this.startDrag(event);
         });
+        canvas.addEventListener('touchstart', (event) => {
+            this.startDrag(event);
+        });
 
         document.addEventListener('mousemove', (event) => {
             if (this.isDragging) {
                 this.drag(event);
             }
         });
+        document.addEventListener('touchmove', (event) => {
+            if (this.isDragging) {
+                this.drag(event);
+            }
+        });
 
         document.addEventListener('mouseup', () => {
+            this.stopDrag();
+        });
+        document.addEventListener('touchend', () => {
             this.stopDrag();
         });
         
