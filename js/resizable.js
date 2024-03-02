@@ -8,6 +8,14 @@ class DraggableResizableObject extends abstractLayer{
         this.position = { x: initialX, y: initialY };
         this.size = { width: initialWidth, height: initialHeight };
         this.img = img;
+        let self = this;
+        this.img.addEventListener("load", () => {
+            self.size.width = self.img.width;
+            self.size.height = self.img.height;
+            self.position.x = 0;
+            self.position.y = 0;
+            drawTemplate();
+        })
         this.sliderInput = slider;
         this.canvas = canvas;
     }

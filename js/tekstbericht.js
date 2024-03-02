@@ -6,7 +6,7 @@ let oproepTekst = new TextDrawable({font: "BebasNeueSEEB", linespacing: 0.5, col
 xPosition: 50, yPosition: 600, maxWidth: 1890, doDynamicSize: false, fontSize: 75, inputID: "oproepTekst"})
 oproepTekst.lockXPosition();
 oproepTekst.makeDraggable();
-document.addEventListener("DOMContentLoaded", ()=>oproepTekst.centerSelfHorizontal(canvas))
+onCanvasResize.addEventListener("resize", ()=>oproepTekst.centerSelfHorizontal(canvas))
 
 
 

@@ -1,4 +1,8 @@
 const canvas = document.getElementById("canvas");
+const onCanvasResize = new EventTarget();
+new ResizeObserver(() => {
+    onCanvasResize.dispatchEvent(new Event('resize'));
+}).observe(canvas);
 const context = canvas.getContext('2d');
 
 function fixLayerIndirection() {
@@ -8,27 +12,34 @@ function fixLayerIndirection() {
         }
         return layer;
     });
-    layers.forEach(layer => {
-        if(layer instanceof ImgWrapper){
-            let width = layer.img.width;
-            let height = layer.img.height;
-            if (canvas.width < width){
-                canvas.width = width;
+
+    //resize the canvas once all images have finished loading
+    imgLayers = layers.filter(layer => layer instanceof ImgWrapper);
+    Promise.all(imgLayers.map(x => x.loadedPromise))
+    .then(() => {
+        layers.forEach(layer => {
+            if(layer instanceof ImgWrapper){
+                console.log(layer.img.width + ", " + layer.img.height);
+                let width = layer.img.width;
+                let height = layer.img.height;
+                if (canvas.width < width){
+                    canvas.width = width;
+                }
+                if (canvas.height < height){
+                    canvas.height = height;
+                }
             }
-            if (canvas.height < height){
-                canvas.height = height;
-            }
-        }
+        });
     });
 }
 
 function drawTemplate() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     layers.forEach(item => {
-        if (item instanceof HTMLImageElement) {
-            context.drawImage(item, 0, 0, item.width, item.height);
+        if (item instanceof abstractLayer) {item.draw(context);
         } else {
-            item.draw(context);
+            console.log("Non layer file tried to be drawn: ");
+            console.log(item);
         }
     });
 }
@@ -58,16 +69,11 @@ function handleImageUpload(event) {
   
       reader.onload = function (e) {
           backgroundImage.img.src = e.target.result;
-          backgroundImage.size.width = backgroundImage.img.width;
-          backgroundImage.size.height = backgroundImage.img.height;
-          backgroundImage.position.x = 0;
-          backgroundImage.position.y = 0;
-          drawTemplate();
       };
   
       reader.readAsDataURL(file);
     }
-  }
+}
 
 function getCanvasCoordinates(canvas, clientX, clientY) {
     let rect = canvas.getBoundingClientRect();
@@ -110,6 +116,9 @@ function onStartup(){
 }
 
 // Event listeners
+
+document.fonts.ready.then(drawTemplate);
+
 canvas.addEventListener('mousedown', (event) => {
     handleDragStart(event.clientX, event.clientY);
 });
