@@ -12,25 +12,6 @@ function fixLayerIndirection() {
         }
         return layer;
     });
-
-    //resize the canvas once all images have finished loading
-    imgLayers = layers.filter(layer => layer instanceof ImgWrapper);
-    Promise.all(imgLayers.map(x => x.loadedPromise))
-    .then(() => {
-        layers.forEach(layer => {
-            if(layer instanceof ImgWrapper){
-                console.log(layer.img.width + ", " + layer.img.height);
-                let width = layer.img.width;
-                let height = layer.img.height;
-                if (canvas.width < width){
-                    canvas.width = width;
-                }
-                if (canvas.height < height){
-                    canvas.height = height;
-                }
-            }
-        });
-    });
 }
 
 function drawTemplate() {

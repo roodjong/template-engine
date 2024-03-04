@@ -5,10 +5,8 @@ class ImgWrapper extends abstractLayer{
         
         this.position = {x: 0, y: 0};
         this.img = new Image();
+        this.img.addEventListener("load", drawTemplate)
         let temp = this.img;
-        this.loadedPromise = new Promise(function(resolve) {
-            temp.addEventListener("load",resolve,false);
-        })
         this.img.src = imgURL;
     }
 

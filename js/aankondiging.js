@@ -1,3 +1,8 @@
+const templateWidth = 2000;
+const templateHeight = 2000;
+canvas.width = templateWidth;
+canvas.height = templateHeight;
+
 let backgroundImage = new DraggableResizableObject(canvas, "imageSize", document.createElement('img'), 0, 0, 0, 0);
 backgroundImage.makeDraggable(canvas);
 let topText = new TextDrawable({font: "Bebas Neue", linespacing: 0.2, color: "white", allCaps: true, context:context,

@@ -154,8 +154,4 @@ class TextDrawable extends abstractLayer {
         }
         context.textBaseline  = oldBaseline;
     }
-
-    centerSelfHorizontal(canvas){
-        this.position.x = (canvas.width - this.size.width) / 2;
-    }
 }
