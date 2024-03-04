@@ -69,18 +69,37 @@ main{
     }
 }
 
+.blink_text{	
+    animation-name:blink;
+    animation-duration:2s;
+    animation-timing-function:ease-in;
+    animation-iteration-count:Infinite;
+    }
+  
+@keyframes blink{
+    0%{
+        background-color: red;
+        color:yellow;
+    }
+    50%{
+        background-color: white;
+        color:black;
+    }
+    100%{
+        background-color: red;
+        color:yellow;
+    }
+}
 
 
 @font-face {
     font-family: 'BebasNeue';
     src: url('Bebas\ Neue\ Pro\ Regular.ttf');
 }
-
 @font-face {
     font-family: 'BebasNeueThin';
     src: url('Bebas\ Neue\ Pro\ Thin.ttf');
 }
-
 @font-face {
     font-family: 'BebasNeueBook';
     src: url('Bebas\ Neue\ Pro\ Book.ttf');
