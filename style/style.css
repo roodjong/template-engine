@@ -7,6 +7,9 @@
     max-height: 80vh;
     object-fit: contain;
     touch-action: none;
+    border-color: black;
+    border-style: dashed;
+    border-width: 3px;
 }
 
 main{
