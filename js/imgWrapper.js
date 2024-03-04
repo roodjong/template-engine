@@ -20,7 +20,7 @@ class ImgWrapper extends abstractLayer{
         this.position = {x: x, y: y};
     }
 
-    draw(context) {
+    internalDraw(context) {
         let oldSetting = context.globalCompositeOperation;
         context.globalCompositeOperation = this.blendingmode;
         context.drawImage(this.img, this.position.x, this.position.y, this.img.width, this.img.height);

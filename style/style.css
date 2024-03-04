@@ -91,4 +91,10 @@ main{
 }@font-face {
     font-family: 'BebasNeueSEM';
     src: url('Bebas\ Neue\ Pro\ SemiExpanded\ Middle.ttf');
+}@font-face {
+    font-family: 'LibreFranklin';
+    src: url('LibreFranklin.ttf');
+}@font-face {
+    font-family: 'LibreFranklinItalic';
+    src: url('LibreFranklin\ Italic.ttf');
 }

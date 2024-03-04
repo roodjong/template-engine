@@ -15,11 +15,12 @@ class TextDrawable extends abstractLayer {
      * @param {string} text text to display
      */
     constructor({font, linespacing, color, xPosition, yPosition, maxWidth = 0, maxHeight = 0, context,
-            doDynamicSize = true, fontSize = 10, doCenter=true, inputID = null, text = null, allCaps = false}) {
+            doDynamicSize = true, fontSize = 10, doCenter=true, inputID = null, text = null,
+            allCaps = false, fontWeight = null, doBottomYPosition = false, letterSpacing = 0}) {
         super();
                 
         this.context = context;
-        this.font = fontSize + "px " + font;
+        this.font = font;
         this.linespacing = linespacing;
         this.color = color;
         this.position = { x: xPosition, y: yPosition };
@@ -29,6 +30,9 @@ class TextDrawable extends abstractLayer {
         this.fontSize = fontSize;
         this.doCenter = doCenter;
         this.allCaps = allCaps;
+        this.fontWeight = fontWeight;
+        this.doBottomYPosition = doBottomYPosition;
+        this.letterSpacing = letterSpacing;
 
         this.firstStart = true;//to fix startup order issues
 
@@ -49,12 +53,22 @@ class TextDrawable extends abstractLayer {
         }
     }
 
+    setFont(size=this.fontSize){
+        let newFont = "";
+        if(this.fontWeight != null){
+            newFont += " " + this.fontWeight;
+        }
+        newFont += ` ${size}px ${this.font}`;
+        this.context.font = newFont.trim();
+        this.context.letterSpacing = this.letterSpacing + "px";
+    }
+
     getPosition(){
         return this.position;
     }
     getVisibleDimentions(){
-        this.context.font = this.font;
-        const lineHeight = this.getMaximumHeight();
+        this.setFont();
+        const lineHeight = this.getLineHeight();
         //count empty strings at start and end, which arent visible and thus not clickable
         let areEmpty = this.lines.map(x => x.trim().length == 0);
         let emptyStart = 0;
@@ -65,26 +79,32 @@ class TextDrawable extends abstractLayer {
         while(areEmpty[this.lines.length-emptyEnd-1]){
             emptyEnd++;
         }
-        let positionYRemove = (1 + this.lineSpacing) * lineHeight * emptyStart;
-        let actualShownLines = this.lines.length - emptyEnd - emptyStart;
+        let emptyTopSpace = (1 + this.lineSpacing) * lineHeight * emptyStart;
+        let emptyBottomSpace = (1 + this.lineSpacing) * lineHeight * emptyEnd;
+        let totalPrintHeight = (1 + this.lineSpacing) * lineHeight * this.lines.length;
+        let trueHeight = totalPrintHeight - emptyBottomSpace - emptyTopSpace;
 
-        let maxLineLength = Math.max(...this.lines.map(
+        let trueWidth = Math.max(...this.lines.map(
             line => this.context.measureText(line).width));
         
-        let trueYPos = this.position.y - positionYRemove;
-        let trueHeight = actualShownLines * lineHeight + (actualShownLines - 1) * this.lineSpacing;
         let trueXPos = this.position.x;
         if(this.doCenter){
-            trueXPos += (this.size.width - maxLineLength)/2;
+            trueXPos += (this.size.width - trueWidth)/2;
         }
-        let trueWidth = maxLineLength;
-        return {x: trueXPos, y: trueYPos, width: trueWidth, height: trueHeight};
+
+        let trueYPos = this.position.y + emptyTopSpace;
+        if(this.doBottomYPosition){
+            trueYPos = this.position.y - totalPrintHeight + emptyTopSpace;
+        }
+
+        let i = {x: trueXPos, y: trueYPos, width: trueWidth, height: trueHeight};
+        return i;
     }
     setPositionInternal(x, y){
         this.position = {x: x, y: y};
     }
 
-    getMaximumHeight(){
+    getLineHeight(){
         let x = this.lines.map(line => {
             let measurements = this.context.measureText(line);
             let actualheight = measurements.actualBoundingBoxAscent + measurements.actualBoundingBoxDescent;
@@ -100,9 +120,8 @@ class TextDrawable extends abstractLayer {
         let fontSize = 1;
         let numOfLines = this.lines.length;
         while (true) {
-            let newFont = `${fontSize}px ${this.font.split('px ')[1]}`;
-            this.context.font = newFont;
-            let maxHeight = this.getMaximumHeight();
+            this.setFont(fontSize);
+            let maxHeight = this.getLineHeight();
             let isSmaller = this.lines.every(x => {
                 const textMetrics = this.context.measureText(x);
                 let realHeight = (numOfLines * maxHeight + (numOfLines - 1) * this.linespacing);
@@ -123,26 +142,35 @@ class TextDrawable extends abstractLayer {
             text = text.toUpperCase()
         }
         this.lines = text.split("\n")
-        if(this.getMaximumHeight() != 0){
+        if(this.getLineHeight() != 0){
             this.calculateFontSize();
         }
     }
 
-    draw(context) {
+    internalDraw(context){
         if(this.firstStart){
             this.calculateFontSize();
             this.firstStart = false;
         }
+
         let oldBaseline = context.textBaseline ;
         context.textBaseline  = "top";
         context.fillStyle = this.color;
-        let newFont = `${this.fontSize}px ${this.font.split('px ')[1]}`;
-        context.font = newFont;
+        this.setFont()
 
-        const maxHeight = this.getMaximumHeight()
+        const maxHeight = this.getLineHeight()
+        let deltaY = maxHeight * (1 + this.lineSpacing);
+        if(this.doBottomYPosition){
+            deltaY *= -1;
+        }
         let yPos = this.position.y;
+        if(this.doBottomYPosition){
+            yPos = this.position.y - maxHeight;
+        }
 
-        for (let line of this.lines) {
+        let internalLines = this.doBottomYPosition ? this.lines.toReversed() : this.lines;
+
+        for (let line of internalLines) {
             const textWidth = context.measureText(line).width;
             let xPos = this.position.x;
             if(this.doCenter){
@@ -150,8 +178,8 @@ class TextDrawable extends abstractLayer {
             }
 
             context.fillText(line, xPos, yPos);
-            yPos += (maxHeight * (1 + this.lineSpacing));
+            yPos += deltaY;
         }
-        context.textBaseline  = oldBaseline;
+        context.textBaseline = oldBaseline;
     }
 }

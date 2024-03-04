@@ -29,7 +29,7 @@ class DraggableResizableObject extends abstractLayer{
         this.position = {x: x, y: y}
     }
 
-    draw(context) {
+    internalDraw(context) {
         context.drawImage(this.img, this.position.x, this.position.y, this.size.width * this.sliderInput.value, this.size.height * this.sliderInput.value);
     }
 

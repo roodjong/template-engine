@@ -5,6 +5,10 @@ class abstractLayer{
     isDraggable = false;
     isDragging = false;
     dragStart = {x: 0, y: 0}
+    shadowColor = "rgb(0 0 0 / 0%)";
+    shadowBlur = 0;
+    shadowOffsetX = 0;
+    shadowOffsetY = 0;
 
     //override these three in child classes to enable shared functionality to work properly.
     /**
@@ -27,6 +31,22 @@ class abstractLayer{
      */
     setPositionInternal(x, y){
         throw Error("Not implemented");
+    }
+
+    /**
+     * Should be overridden. Draws the element.
+     * @param {context2d} context 
+     */
+    internalDraw(context){
+        throw Error("Not implemented");
+    }
+
+    draw(context){
+        context.shadowColor = this.shadowColor;
+        context.shadowBlur = this.shadowBlur;
+        context.shadowOffsetX = this.shadowOffsetX;
+        context.shadowOffsetY = this.shadowOffsetY;
+        this.internalDraw(context)
     }
 
     setPosition(x, y){
@@ -84,5 +104,12 @@ class abstractLayer{
             this.setPosition(originalPos.x + deltaX, originalPos.y + deltaY);
             this.dragStart = { x: x, y: y };
         }
+    }
+
+    setShadow(color, blur, xOffset, yOffset){
+        this.shadowColor = color;
+        this.shadowBlur = blur;
+        this.shadowOffsetX = xOffset;
+        this.shadowOffsetY = yOffset;
     }
 }
