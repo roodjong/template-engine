@@ -15,7 +15,7 @@ class TextDrawable extends abstractLayer {
      * @param {string} text text to display
      */
     constructor({font, linespacing, color, xPosition, yPosition, maxWidth = 0, maxHeight = 0, context,
-            doDynamicSize = true, fontSize = 10, doCenter=true, inputID = null, text = null,
+            doDynamicSize = true, fontSize = 10, useDynamicLineHeight = true, doCenter=true, inputID = null, text = null, textBaseline = "top",
             allCaps = false, fontWeight = null, doBottomYPosition = false, letterSpacing = 0}) {
         super();
                 
@@ -33,6 +33,8 @@ class TextDrawable extends abstractLayer {
         this.fontWeight = fontWeight;
         this.doBottomYPosition = doBottomYPosition;
         this.letterSpacing = letterSpacing;
+        this.textBaseline = textBaseline;
+        this.useDynamicLineHeight = useDynamicLineHeight;
 
         this.firstStart = true;//to fix startup order issues
 
@@ -68,7 +70,7 @@ class TextDrawable extends abstractLayer {
     }
     getVisibleDimentions(){
         this.setFont();
-        const lineHeight = this.getLineHeight();
+        const lineHeight = this.getRealLineHeight();
         //count empty strings at start and end, which arent visible and thus not clickable
         let areEmpty = this.lines.map(x => x.trim().length == 0);
         let emptyStart = 0;
@@ -104,7 +106,7 @@ class TextDrawable extends abstractLayer {
         this.position = {x: x, y: y};
     }
 
-    getLineHeight(){
+    getRealLineHeight(){
         let x = this.lines.map(line => {
             let measurements = this.context.measureText(line);
             let actualheight = measurements.actualBoundingBoxAscent + measurements.actualBoundingBoxDescent;
@@ -121,7 +123,7 @@ class TextDrawable extends abstractLayer {
         let numOfLines = this.lines.length;
         while (true) {
             this.setFont(fontSize);
-            let maxHeight = this.getLineHeight();
+            let maxHeight = this.getRealLineHeight();
             let isSmaller = this.lines.every(x => {
                 const textMetrics = this.context.measureText(x);
                 let realHeight = (numOfLines * maxHeight + (numOfLines - 1) * this.linespacing);
@@ -142,7 +144,7 @@ class TextDrawable extends abstractLayer {
             text = text.toUpperCase()
         }
         this.lines = text.split("\n")
-        if(this.getLineHeight() != 0){
+        if(this.getRealLineHeight() != 0){
             this.calculateFontSize();
         }
     }
@@ -153,12 +155,12 @@ class TextDrawable extends abstractLayer {
             this.firstStart = false;
         }
 
-        let oldBaseline = context.textBaseline ;
-        context.textBaseline  = "top";
+        let oldBaseline = context.textBaseline;
+        context.textBaseline  = this.textBaseline;
         context.fillStyle = this.color;
         this.setFont()
 
-        const maxHeight = this.getLineHeight()
+        const maxHeight = this.useDynamicLineHeight ? this.getRealLineHeight() : this.fontSize;
         let deltaY = maxHeight * (1 + this.lineSpacing);
         if(this.doBottomYPosition){
             deltaY *= -1;
