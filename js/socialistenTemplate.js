@@ -7,8 +7,9 @@ let backgroundImage = new DraggableResizableObject(canvas, "imageSize", document
 backgroundImage.makeDraggable(canvas);
 let toptitel = new TextDrawable({font: "LibreFranklinItalic", linespacing: 0, color: "white", allCaps: true, context:context,
     xPosition: 0, yPosition: 1190, maxWidth:2000, inputID:"topText", fontSize: 85, doDynamicSize: false, fontWeight: "bold"});
-let titel = new TextDrawable({font: "LibreFranklin", linespacing: 0.3, color: "white", allCaps: true, context:context, letterSpacing: 5,
-    xPosition: 100, yPosition: 1600, maxWidth:1800, maxHeight:230, inputID:"titelText", doBottomYPosition: true, fontWeight: "800"});
+let titel = new TextDrawable({font: "LibreFranklin", linespacing: 0.05, color: "white", allCaps: true, context:context, letterSpacing: 5,
+    xPosition: 100, yPosition: 1750, maxWidth:1800, maxHeight:230, inputID:"titelText", doBottomYPosition: true, fontWeight: "800",
+    doDynamicSize: false, fontSize:145, useDynamicLineHeight: false, textBaseline: "alphabetic"});
 let ondertitel = new TextDrawable({font: "LibreFranklin", linespacing: 0.5, color: "white", allCaps: true, context:context,
     xPosition: 100, yPosition: 1750, maxWidth:1800, inputID:"onderTitel", letterSpacing: 10, doDynamicSize: false, fontSize: 75});
 let logo = new ImgWrapper("templateImages/SocialistenTemplate/logo.png");
