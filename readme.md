@@ -1,5 +1,7 @@
 # Readme
 
+URL: [https://roodjong.github.io/template-engine/](https://roodjong.github.io/template-engine/)
+
 This project allows for simple in-browser editing of templates. Templates can be created by exporting layers of an existing (photoshop) template layer by layer and configuring them in javascript, setting their blending options, ordering, etc. Though configuring a new template should not be too difficult, having a way for laymen to create a new template is beyond the scope of this project, as templated generally rarely need to be changed, and this cuts down on maintanance load compared to negletable gain. Look at any of the existing templates and the configuration options of the classes for inspiration.
 
 The project consists of 4 core classes, and one shared javascript file. The shared JS file takes care of the majority of configuration and automagic name resolving. Below is a short summary of all 4 core classes.
