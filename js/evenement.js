@@ -45,6 +45,9 @@ const topTextSizeSlider = document.getElementById("titelSize");
 topText.setFont(size=topTextSizeSlider.value);
 topTextSizeSlider.addEventListener("input", _ => topText.setFont(topTextSizeSlider.value));
 
+const titleBackgroundColorDropdown = document.getElementById("titleBackgroundColor");
+titleBackgroundColorDropdown.addEventListener("input", _ => topText.setBackgroundColor(titleBackgroundColorDropdown.value));
+
 const logo = new ImgWrapper("templateImages/Evenement/logo140x140.png");
 logo.setPosition(templateWidth/2 - 140/2, templateHeight - 180);
 
