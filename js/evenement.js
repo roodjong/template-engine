@@ -10,7 +10,7 @@ const topText = new TextBoxDrawable({
     font: "Bebas Neue",
     linespacing: 0.4,
     color: "white",
-    backgroundColor: "#C2000B",
+    backgroundColor: "#973936",
     allCaps: true,
     context,
     xPosition: 50,
@@ -24,7 +24,6 @@ const topText = new TextBoxDrawable({
     shadowEnable: false
 });
 topText.makeDraggable();
-topText.lockXPosition();
 
 const ondertitel = new TextDrawable({
     font: "BebasNeueBook",
@@ -36,7 +35,7 @@ const ondertitel = new TextDrawable({
     xPosition: templateWidth/2,
     yPosition: 1800,
     doDynamicSize: false,
-    fontSize: 68,
+    fontSize: 92,
     doCenter: true,
     inputID: "ondertitel",
     useDynamicLineHeight: false
