@@ -48,7 +48,7 @@ topTextSizeSlider.addEventListener("input", _ => topText.setFont(topTextSizeSlid
 const logo = new ImgWrapper("templateImages/Evenement/logo140x140.png");
 logo.setPosition(templateWidth/2 - 140/2, templateHeight - 180);
 
-const gradient = new ImgWrapper("templateImages/Evenement/gradient.png");
+const gradient = new ImgWrapper("templateImages/Evenement/gradient.png", "multiply");
 
 // Define layers here
 let layers = [
