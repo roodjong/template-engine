@@ -10,7 +10,7 @@ const topText = new TextBoxDrawable({
     font: "Bebas Neue",
     linespacing: 0.4,
     color: "white",
-    backgroundColor: "#973936",
+    backgroundColor: "#c2000a",
     allCaps: true,
     context,
     xPosition: 50,
