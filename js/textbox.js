@@ -103,6 +103,10 @@ class TextBoxDrawable extends abstractLayer {
         this.backgroundColor = color;
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     getPosition(){
         return this.position;
     }

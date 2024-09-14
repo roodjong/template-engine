@@ -19,6 +19,10 @@ class RectangleDrawable extends abstractLayer {
         this.position = { x, y };
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     internalDraw(context) {
         context.fillStyle = this.color;
         context.fillRect(this.position.x, this.position.y, this.size.width, this.size.height);

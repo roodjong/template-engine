@@ -16,6 +16,9 @@ class ImgWrapper extends abstractLayer{
     getVisibleSize(){
         return {x:this.position.x, y:this.position.y, width: this.img.width, height: this.img.height};
     }
+    setImageSource(src) {
+        this.img.src = src;
+    }
     setPositionInternal(x, y){
         this.position = {x: x, y: y};
     }

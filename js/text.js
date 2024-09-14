@@ -65,6 +65,10 @@ class TextDrawable extends abstractLayer {
         this.context.letterSpacing = this.letterSpacing + "px";
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     getPosition(){
         return this.position;
     }
