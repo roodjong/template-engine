@@ -142,17 +142,17 @@ const groepsnaam = new TextDrawable({
     useDynamicLineHeight: false
 });
 
-const messageText = new TextDrawable({
+const messageText = new JustifiedTextDrawable({
     font: "BebasNeue",
     linespacing: 0.5,
     color: "black",
     context,
-    xPosition: 50,
+    xPosition: 100,
     yPosition: 600,
-    maxWidth: 1900,
-    doDynamicSize: false,
+    maxWidth: 1800,
     fontSize: 80,
-    inputID: "oproepTekst"
+    inputID: "oproepTekst",
+    doCenter: false
 });
 messageText.lockXPosition();
 messageText.makeDraggable();
