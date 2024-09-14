@@ -143,7 +143,7 @@ const groepsnaam = new TextDrawable({
 });
 
 const messageText = new TextDrawable({
-    font: "Bebas Neue",
+    font: "BebasNeue",
     linespacing: 0.5,
     color: "black",
     context,
