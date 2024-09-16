@@ -11,7 +11,7 @@ const colorSchemes = {
         groepsnaam: "black",
         background: "white",
         messageText: "black",
-        logo: "templateImages/TekstberichtNieuw/logo140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logo200x200.png"
     },
     "red-white": {
         topText: "#C2000B",
@@ -20,7 +20,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#C2000B",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "pale-red-white": {
         topText: "#973936",
@@ -29,7 +29,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#973936",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "grey-white": {
         topText: "#222222",
@@ -38,7 +38,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#222222",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "black-white": {
         topText: "black",
@@ -47,7 +47,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "black",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "NATO-blue-white": {
         topText: "#003161",
@@ -56,7 +56,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#003161",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "climate-green-white": {
         topText: "#51824f",
@@ -65,7 +65,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#51824f",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
     "purple-white": {
         topText: "#716185",
@@ -74,7 +74,7 @@ const colorSchemes = {
         groepsnaam: "white",
         background: "#716185",
         messageText: "white",
-        logo: "templateImages/TekstberichtNieuw/logowit140x140.png"
+        logo: "templateImages/TekstberichtNieuw/logowit200x200.png"
     },
 };
 
@@ -93,7 +93,8 @@ const topText = new TextBoxDrawable({
     doCenter: true,
     doDynamicSize: false,
     fontSize: 120,
-    shadowEnable: true
+    shadowEnable: true,
+    shadowOpacity: 0.4
 });
 topText.makeDraggable();
 
@@ -109,18 +110,18 @@ const topTextSizeSlider = document.getElementById("titelSize");
 topText.setFont(size=topTextSizeSlider.value);
 topTextSizeSlider.addEventListener("input", _ => topText.setFont(topTextSizeSlider.value));
 
-const logo = new ImgWrapper("templateImages/TekstberichtNieuw/logo140x140.png");
-logo.setPosition(templateWidth - 400, templateHeight - 200);
+const logo = new ImgWrapper("templateImages/TekstberichtNieuw/logo200x200.png");
+logo.setPosition(templateWidth - 480, templateHeight - 260);
 
 const rood = new TextDrawable({
     font: "BebasNeueSEEB",
     linespacing: 0,
     color: "black",
-    xPosition: templateWidth - 400 + 140 + 12.5,
-    yPosition: templateHeight - 175,
+    xPosition: templateWidth - 480 + 200 + 18,
+    yPosition: templateHeight - 230,
     text: "ROOD",
     doDynamicSize: false,
-    fontSize: 64,
+    fontSize: 90,
     doCenter: false,
     useDynamicLineHeight: false,
     letterSpacing: 0, context
@@ -133,10 +134,10 @@ const groepsnaam = new TextDrawable({
     allCaps: false,
     context,
     textBaseline: "alphabetic",
-    xPosition: templateWidth - 400 + 140 + 12.5 + 2,
-    yPosition: templateHeight - 95,
+    xPosition: templateWidth - 480 + 200 + 18 + 2,
+    yPosition: templateHeight - 115,
     doDynamicSize: false,
-    fontSize: 32,
+    fontSize: 48,
     doCenter: false,
     text: "socialistische\njongeren",
     useDynamicLineHeight: false
