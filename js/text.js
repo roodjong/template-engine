@@ -56,6 +56,7 @@ class TextDrawable extends abstractLayer {
     }
 
     setFont(size=this.fontSize){
+        this.fontSize = size;
         let newFont = "";
         if(this.fontWeight != null){
             newFont += " " + this.fontWeight;

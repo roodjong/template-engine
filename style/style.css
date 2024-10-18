@@ -120,3 +120,11 @@ main{
     font-family: 'LibreFranklinItalic';
     src: url('LibreFranklin\ Italic.ttf');
 }
+@font-face {
+    font-family: "OutfitBold";
+    src: url("Outfit-Bold.ttf");
+}
+@font-face {
+    font-family: "BarlowMedium";
+    src: url("Barlow-Medium.ttf");
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Image Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <p>Laad het niet in? Vreemd lettertype? Herlaad de pagina/upload de file opnieuw, het werkt 90% of the time all the time.</p>
+    <div class="labelInputPair">
+      <label name="titelText">Titel:</label>
+      <textarea id="titelText">Jouw titel</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="callToAction">Call to action:</label>
+      <textarea id="callToAction">Call to action!</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="oproepTekstLinks">Tekst links:</label>
+      <textarea id="oproepTekstLinks" class="bigtext">Lorem ipsum dolor sit amet. Sit nostrum saepe ut praesentium maiores hic quam possimus. Aut sequi omnis et temporibus nisi ut atque suscipit hic culpa rerum. Sed facilis quia eos exercitationem internos ut nunquam officiis et blanditiis officia vel natus fugit sit consequatur architecto ab dolor</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="oproepTekstRechts">Tekst rechts:</label>
+      <textarea id="oproepTekstRechts" class="bigtext">quasi? Et dolores aut excerpturi officiis sed consequatur enim vel nobis molestiae aut quam nesciunt non molestiae sint aut quasi voluptas. Eum iste temporibus ea quia ipsum sit fugiat quearat aut ratione.</textarea>
+    </div>
+    <br>
+    <button id="downloadButton" onclick="download('Aankondiging')">Download</button>
+  </div>
+  </main>
+
+  <script src="js/shared.js"></script>
+  <script src="js/abstractLayer.js"></script>
+  <script src="js/text.js"></script>
+  <script src="js/justifiedtext.js"></script>
+  <script src="js/rect.js"></script>
+  <script src="js/textbox.js"></script>
+  <script src="js/resizable.js"></script>
+  <script src="js/imgWrapper.js"></script>
+  <script src="js/navotekstbericht.js"></script>
+  
+</body>
+</html>
