@@ -12,22 +12,26 @@ const topText = new TextDrawable({
     color: "white",
     allCaps: true,
     context,
-    xPosition: 200,
+    xPosition: 100,
     yPosition: 100,
     maxWidth: 1600,
     maxHeight: 400,
     inputID: "titelText",
-    doCenter: true,
-    doDynamicSize: true,
+    doCenter: false,
+    doDynamicSize: false,
+    fontSize: 120,
 });
 topText.makeDraggable();
-topText.lockXPosition();
+
+const topTextSizeSlider = document.getElementById("titelSize");
+topText.setFont(size=topTextSizeSlider.value);
+topTextSizeSlider.addEventListener("input", _ => topText.setFont(topTextSizeSlider.value));
 
 const overlay = new ImgWrapper("templateImages/NAVOSlide1/overlay.png");
 
 // Define layers here
 let layers = [
-    backgroundImage, 
+    backgroundImage,
     overlay,
     topText,
 ];
