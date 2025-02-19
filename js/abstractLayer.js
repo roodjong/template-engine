@@ -77,6 +77,13 @@ class abstractLayer{
         this.xIsLocked = true;
     }
 
+    /**
+     * Unlocks the x position of the element.
+     */
+    unlockXPosition(){
+        this.xIsLocked = false;
+    }
+
     startDrag(x, y) {
         if(!this.isDraggable){
             //Not draggable

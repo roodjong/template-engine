@@ -25,6 +25,16 @@ const topText = new TextBoxDrawable({
 });
 topText.makeDraggable();
 
+const lockXPositionButton = document.getElementById("lockXPosition");
+lockXPositionButton.addEventListener("input", _ => {
+    if (lockXPositionButton.checked) {
+        topText.setPosition(50, topText.getPosition().y);
+        topText.lockXPosition();
+    } else {
+        topText.unlockXPosition();
+    }
+});
+
 const bottomRect = new RectangleDrawable({
     color: "white",
     xPosition: 0,
