@@ -1,5 +1,7 @@
+const heightToWidthRatio = 5/4;
+
 const templateWidth = 2000;
-const templateHeight = 2000;
+const templateHeight = heightToWidthRatio * templateWidth;
 canvas.width = templateWidth;
 canvas.height = templateHeight;
 
@@ -14,7 +16,7 @@ const topText = new TextBoxDrawable({
     allCaps: true,
     context,
     xPosition: 50,
-    yPosition: 1450,
+    yPosition: 1950,
     maxWidth: 1940,
     maxHeight: 400,
     inputID:"titelText",
@@ -33,7 +35,7 @@ const ondertitel = new TextDrawable({
     context,
     textBaseline: "alphabetic",
     xPosition: templateWidth/2,
-    yPosition: 1800,
+    yPosition: 2300,
     doDynamicSize: false,
     fontSize: 92,
     doCenter: true,
@@ -52,6 +54,7 @@ const logo = new ImgWrapper("templateImages/Evenement/logo140x140.png");
 logo.setPosition(templateWidth/2 - 140/2, templateHeight - 180);
 
 const gradient = new ImgWrapper("templateImages/Evenement/gradient.png", "multiply");
+gradient.setPosition(0, templateHeight - 2480)
 
 // Define layers here
 let layers = [
@@ -61,3 +64,5 @@ let layers = [
     ondertitel,
     topText,
 ];
+
+console.log(gradient.getVisibleSize());

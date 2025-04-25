@@ -1,5 +1,7 @@
+const heightToWidthRatio = 5/4;
+
 const templateWidth = 2000;
-const templateHeight = 2000;
+const templateHeight = heightToWidthRatio * templateWidth;
 canvas.width = templateWidth;
 canvas.height = templateHeight;
 
@@ -14,9 +16,9 @@ const topText = new TextBoxDrawable({
     allCaps: true,
     context,
     xPosition: 50,
-    yPosition: 1650,
-    maxWidth:1940,
-    maxHeight:400,
+    yPosition: 2150,
+    maxWidth: 1940,
+    maxHeight: 400,
     inputID:"titelText",
     doCenter: true,
     doDynamicSize: false,

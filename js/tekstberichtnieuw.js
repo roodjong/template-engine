@@ -1,5 +1,7 @@
+const heightToWidthRatio = 5/4;
+
 const templateWidth = 2000;
-const templateHeight = 2000;
+const templateHeight = heightToWidthRatio * templateWidth;
 canvas.width = templateWidth;
 canvas.height = templateHeight;
 
@@ -86,7 +88,7 @@ const topText = new TextBoxDrawable({
     allCaps: true,
     context,
     xPosition: 50,
-    yPosition: 200,
+    yPosition: 300,
     maxWidth: 1940,
     maxHeight: 400,
     inputID: "titelText",
@@ -149,7 +151,7 @@ const messageText = new JustifiedTextDrawable({
     color: "black",
     context,
     xPosition: 100,
-    yPosition: 600,
+    yPosition: 700,
     maxWidth: 1800,
     fontSize: 80,
     inputID: "oproepTekst",
