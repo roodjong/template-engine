@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Image Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <p>Sleep het plaatje en tekst om ze te verplaatsen.</p>
+    <p>Laad het niet in? Vreemd lettertype? Herlaad de pagina/upload de file opnieuw.</p>
+    <p class="blink_text">Zorg dat het plaatje dat je gebruikt rechtenvrij is! Anders kan dit de vereniging vele duizenden euros kosten!</p>
+    <label name="imageInput">Upload plaatje</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <div class="labelInputPair">
+      <label name="imageSize">Grootte achtergrond:</label>
+      <input type="range" id="imageSize" min="0" max="10" step="0.01" value="1">
+    </div>
+    <div class="labelInputPair">
+      <label name="topText">Boventitel:</label>
+      <textarea id="topText">Evenement</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="titelText">Titel:</label>
+      <textarea id="titelText">Tekst van jouw ding&#13;op deze regel</textarea>
+    </div>
+    <div class="labelInputPair">
+      <label name="onderTitel">Ondertitel:</label>
+      <textarea id="onderTitel">datum - tijd - adres&#13;plaats</textarea>
+    </div>
+    <br>
+    <button id="downloadButton" onclick="download('Aankondiging')">Download</button>
+  </div>
+  </main>
+
+  <script src="js/shared.js"></script>
+  <script src="js/abstractLayer.js"></script>
+  <script src="js/text.js"></script>
+  <script src="js/resizable.js"></script>
+  <script src="js/imgWrapper.js"></script>
+  <script src="js/rspaankondiging.js"></script>
+  
+</body>
+</html>
