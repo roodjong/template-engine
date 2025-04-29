@@ -15,8 +15,14 @@ let titel = new TextDrawable({font: "LibreFranklin", linespacing: 0.05, color: "
 let ondertitel = new TextDrawable({font: "LibreFranklin", linespacing: 0.5, color: "white", allCaps: true, context:context,
     xPosition: 100, yPosition: 2250, maxWidth:1800, inputID:"onderTitel", letterSpacing: 10, doDynamicSize: false, fontSize: 75});
 let logos = new ImgWrapper("templateImages/RSPROODAankondiging/logos.png");
-let balkje = new ImgWrapper("templateImages/RSPROODAankondiging/roodbalkje.png");
-balkje.setPosition(0, 500); // 500 for changed aspect ratio
+
+const balkje = new RectangleDrawable({
+    color: "#ff0000",
+    xPosition: 352,
+    yPosition: 2161,
+    height: 29,
+    width: templateWidth - 2 * 352,
+});
 
 toptitel.lockXPosition();
 toptitel.makeDraggable();
