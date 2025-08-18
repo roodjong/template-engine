@@ -128,6 +128,10 @@ class TextBoxDrawable extends abstractLayer {
         let totalPrintHeight = (1 + this.lineSpacing) * lineHeight * this.lines.length;
         let trueHeight = totalPrintHeight - emptyBottomSpace - emptyTopSpace + 2 * this.padding.y * this.fontSize;
 
+        // Transform: shear and rotate
+        this.context.setTransform(1, 0, -0.1, 1, 0, 0);
+        this.context.rotate(-3 * Math.PI / 180);
+
         let trueWidth = Math.max(...this.lines.map(
             line => this.context.measureText(line).width)) + 2 * this.padding.x * this.fontSize;
         
@@ -140,6 +144,9 @@ class TextBoxDrawable extends abstractLayer {
         if (this.doBottomYPosition) {
             trueYPos = this.position.y - totalPrintHeight + emptyTopSpace;
         }
+
+        // Reset transformation
+        this.context.setTransform();
 
         let i = {x: trueXPos, y: trueYPos, width: trueWidth, height: trueHeight};
         return i;
@@ -211,19 +218,20 @@ class TextBoxDrawable extends abstractLayer {
             yPos = this.position.y - maxHeight;
         }
 
-        let internalLines = this.doBottomYPosition ? this.lines.toReversed() : this.lines;
+        const internalLines = this.doBottomYPosition ? this.lines.toReversed() : this.lines;
 
-        for (let line of internalLines) {
-            const textWidth = context.measureText(line).width;
-            const textHeight = context.measureText(line).height;
-            let xPos = this.position.x;
-            if (this.doCenter) {
-                xPos = this.position.x + ((this.size.width - textWidth) / 2);
-            }
-
+        for (const line of internalLines) {
             // Transform: shear and rotate
             this.context.setTransform(1, 0, -0.1, 1, 0, 0);
             this.context.rotate(-3 * Math.PI / 180);
+
+            const metrics = this.context.measureText(line);
+            const textWidth = metrics.width;
+            const textHeight = metrics.height;
+            let xPos = this.position.x;
+            if (this.doCenter) {
+                xPos += (this.size.width - textWidth) / 2;
+            }
 
             // Draw shadow
             if (this.shadowEnable) {

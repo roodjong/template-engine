@@ -15,7 +15,7 @@ const topText = new TextBoxDrawable({
     backgroundColor: "#c2000a",
     allCaps: true,
     context,
-    xPosition: 50,
+    xPosition: 120,
     yPosition: 1950,
     maxWidth: 1940,
     maxHeight: 400,
@@ -26,6 +26,16 @@ const topText = new TextBoxDrawable({
     shadowEnable: false
 });
 topText.makeDraggable();
+
+const lockXPositionButton = document.getElementById("lockXPosition");
+lockXPositionButton.addEventListener("input", _ => {
+    if (lockXPositionButton.checked) {
+        topText.setPosition(120, topText.getPosition().y);
+        topText.lockXPosition();
+    } else {
+        topText.unlockXPosition();
+    }
+});
 
 const ondertitel = new TextDrawable({
     font: "BebasNeueBook",
